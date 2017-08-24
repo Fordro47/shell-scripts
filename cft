@@ -1,0 +1,41 @@
+_change_org()
+{
+	space=$(cf target | grep API)
+	if [[ $space == *"-np"* ]]
+	then
+		echo "Targeting: UAT"
+		cf target -o logisticsIT$value -s uat
+	elif [[ $space == *"-zb."* ]]
+	then
+		echo "Targeting: PROD"
+		cf target -o logisticsIT$value -s prod
+	fi
+}
+
+
+if [ "$1" = "hammer" ]
+then
+    echo "Changing orgs to logisticsIT-hammer"
+    value="-hammer"
+    _change_org value
+
+elif [ "$1" = "drill" ]
+then
+    echo "Changing orgs to logisticsIT-drill"
+    value="-drill"
+    _change_org value
+
+elif [ "$1" = "saw" ]
+then
+    echo "Changing orgs to logisticsIT-saw"
+    value="-saw"
+    _change_org value
+elif [ "$1" = "help" ]
+then
+    echo "enter cft [org]"
+
+else
+	echo "Changing orgs to logisticsIT"
+	value=""
+	_change_org value
+fi

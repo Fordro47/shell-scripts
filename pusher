@@ -1,0 +1,36 @@
+#!/bin/bash
+
+_pushMaster()
+{
+	read -p "Are you SURE you want to push to PROD (Y/n)? "  answer
+
+	if [ $answer = "Y" ]
+	then
+		echo "Pushing to Master and PROD!"
+		git push origin master
+	elif [ $answer = "n" ]
+	then
+		echo "Exiting!"
+		exit
+	else
+		echo "Entry NOT recognized!"
+		_pushMaster
+	fi
+}
+
+_pushNonProd()
+{
+	echo "Pushing to $branch!"
+	git push origin $branch
+}
+
+branch=$(git rev-parse --abbrev-ref HEAD)
+
+if [ $branch == "master" ]
+then
+	echo "You are on branch: master"
+	_pushMaster
+else
+	echo "You are on branch: $branch"
+	_pushNonProd branch
+fi
