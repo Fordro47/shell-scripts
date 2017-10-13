@@ -5,7 +5,7 @@ _change_org()
 	then
 		echo "Targeting: UAT"
 		cf target -o logisticsIT$value -s uat
-	elif [[ $space == *"-zb."* ]]
+	elif [[ $space == *"-zb."* || $space == *"-za."* ]]
 	then
 		echo "Targeting: PROD"
 		cf target -o logisticsIT$value -s prod

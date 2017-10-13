@@ -1,21 +1,21 @@
 
 _login()
 {
-	cf login -a https://api.run-$value.homedepot.com -u aff2485 
+	cf login -a https://api.run-$value.homedepot.com -u aff2485
 }
 
-echo " 
- ██████╗███████╗██╗     
-██╔════╝██╔════╝██║     
-██║     █████╗  ██║     
-██║     ██╔══╝  ██║     
+echo "
+ ██████╗███████╗██╗
+██╔════╝██╔════╝██║
+██║     █████╗  ██║
+██║     ██╔══╝  ██║
 ╚██████╗██║     ███████╗
  ╚═════╝╚═╝     ╚══════╝
-                        
+
 "
 if [ "$1" = "pr" ]
 then
-    echo "TARGETING PRODUCTION"
+    echo "TARGETING ZB PRODUCTION"
     value="zb"
     _login value
 
@@ -27,8 +27,14 @@ then
 
 elif [ "$1" = "zb" ]
 then
-    echo "TARGETING PRODUCTION"
+    echo "TARGETING ZB PRODUCTION"
     value="zb"
+    _login value
+
+elif [ "$1" = "za" ]
+then
+    echo "TARGETING ZA PRODUCTION"
+    value="za"
     _login value
 
 else
@@ -38,7 +44,8 @@ else
 	    echo "------------------------"
 	    echo "------Possible env------"
 	    echo ""
-	    echo "pr" 
+	    echo "pr"
+	    echo "za"
 	    echo "zb"
 	    echo "np"
 	    echo ""
