@@ -1,7 +1,7 @@
 
 _login()
 {
-	cf login -a https://api.run-$value.homedepot.com -u aff2485
+	cf login -a https://api.run-$value.homedepot.com
 }
 
 echo "
